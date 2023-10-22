@@ -37,8 +37,13 @@ List<Game> games = new()
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
+// Routing group
+var group = app
+    .MapGroup("/games")
+    .WithParameterValidation();//Checks by MinimalApis.Extensions
 // GET
-app.MapGet("/games", () => games);
+// app.MapGet("/games", () => games);
+group.MapGet("/", () => games);
 
 // Find the game where requested id matches with game id.
 
@@ -46,7 +51,7 @@ app.MapGet("/games", () => games);
 // app.MapGet("/games/{id}", (int id) => games.Find(game => game.Id == id));
 
 // Now it sends 404 error code.
-app.MapGet("/games/{id}", (int id) => 
+group.MapGet("/{id}", (int id) => 
 {
     Game? game = games.Find(game => game.Id == id);
     if (game is null)
@@ -58,7 +63,7 @@ app.MapGet("/games/{id}", (int id) =>
 .WithName(GetGameEndpointName); // Provide the endpoint.
 
 // POST
-app.MapPost("/games", (Game game) => 
+group.MapPost("/", (Game game) => 
 {
     game.Id = games.Max(game => game.Id) + 1;
     games.Add(game);
@@ -68,7 +73,7 @@ app.MapPost("/games", (Game game) =>
 
 
 // PUT
-app.MapPut("/games/{id}", (int id, Game updatedGame) => 
+group.MapPut("/{id}", (int id, Game updatedGame) => 
 {
     Game? existingGame = games.Find(game => game.Id == id);
 
@@ -82,6 +87,20 @@ app.MapPut("/games/{id}", (int id, Game updatedGame) =>
     existingGame.Price = updatedGame.Price;
     existingGame.ReleaseDate = updatedGame.ReleaseDate;
     existingGame.ImageUri = updatedGame.ImageUri;
+
+    return Results.NoContent();
+});
+
+
+// DELETE
+group.MapDelete("/{id}", (int id) => 
+{
+    Game? game = games.Find(game => game.Id == id);
+
+    if (game is not null)
+    {
+        games.Remove(game);
+    }
 
     return Results.NoContent();
 });

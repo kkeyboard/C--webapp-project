@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "q/59YrN9efauWQFdBf9wFIAprHpzgTHcyEpDRdy+MWSCCVfz2lGGjjN10lmZ0fKW1BIUvS0cyEmNZKobplsWZQ==",
+  "dgSpecHash": "vW8MBzwdt9+iqys11Pv+SMeTSLVKVDthqQXzAd/hFWELJweh1HrsSL3p9/q+uWgnh9BBgsu0YFrCVJv0VeIgPQ==",
   "success": true,
   "projectFilePath": "/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/GameStore.Api.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/messier31/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/messier31/.nuget/packages/minimalapis.extensions/0.11.0/minimalapis.extensions.0.11.0.nupkg.sha512",
+    "/Users/messier31/.nuget/packages/minivalidation/0.8.0/minivalidation.0.8.0.nupkg.sha512"
+  ],
   "logs": []
 }
