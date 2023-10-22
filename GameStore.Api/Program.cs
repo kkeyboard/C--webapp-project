@@ -1,5 +1,7 @@
 using GameStore.Api.Entities;
 
+const string GetGameEndpointName = "GetGame";
+
 // In-memory game lists
 List<Game> games = new()
 {
@@ -35,7 +37,7 @@ List<Game> games = new()
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
-
+// GET
 app.MapGet("/games", () => games);
 
 // Find the game where requested id matches with game id.
@@ -43,6 +45,7 @@ app.MapGet("/games", () => games);
 // This code send 200 ok for non-existing request.
 // app.MapGet("/games/{id}", (int id) => games.Find(game => game.Id == id));
 
+// Now it sends 404 error code.
 app.MapGet("/games/{id}", (int id) => 
 {
     Game? game = games.Find(game => game.Id == id);
@@ -51,8 +54,37 @@ app.MapGet("/games/{id}", (int id) =>
         return Results.NotFound();
     }
     return Results.Ok(game);
+})//;
+.WithName(GetGameEndpointName); // Provide the endpoint.
+
+// POST
+app.MapPost("/games", (Game game) => 
+{
+    game.Id = games.Max(game => game.Id) + 1;
+    games.Add(game);
+
+    return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game);
 });
 
+
+// PUT
+app.MapPut("/games/{id}", (int id, Game updatedGame) => 
+{
+    Game? existingGame = games.Find(game => game.Id == id);
+
+    if (existingGame is null)
+    {
+        return Results.NotFound();
+    }
+
+    existingGame.Name = updatedGame.Name;
+    existingGame.Genre = updatedGame.Genre;
+    existingGame.Price = updatedGame.Price;
+    existingGame.ReleaseDate = updatedGame.ReleaseDate;
+    existingGame.ImageUri = updatedGame.ImageUri;
+
+    return Results.NoContent();
+});
 
 
 app.Run();
