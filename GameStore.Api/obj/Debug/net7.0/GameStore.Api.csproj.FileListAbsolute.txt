@@ -29,3 +29,13 @@
 /Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/obj/Debug/net7.0/GameStore.Api.csproj.AssemblyReference.cache
 /Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/obj/Debug/net7.0/GameStore.Api.MvcApplicationPartsAssemblyInfo.cs
 /Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/obj/Debug/net7.0/GameStore.Api.csproj.CopyComplete
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Humanizer.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Relational.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Microsoft.Extensions.DependencyModel.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Mono.TextTemplating.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Npgsql.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/messier31/Downloads/cs-study/c#/web-app/GameStore.Api/bin/Debug/net7.0/System.CodeDom.dll
