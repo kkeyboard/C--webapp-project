@@ -20,7 +20,7 @@ namespace GameStore.Api.Endpoints
                 .WithParameterValidation();//Checks by MinimalApis.Extensions
 
             // GET
-            group.MapGet("/", (IGamesRepository repository) => repository.GetAll().Select(game => game.AsDto()));
+            group.MapGet("/", (IGamesRepository repository) => repository.GetAllAsync().Select(game => game.AsDto()));
 
             // Find the game where requested id matches with game id.
 
@@ -30,7 +30,7 @@ namespace GameStore.Api.Endpoints
             // Now it sends 404 error code.
             group.MapGet("/{id}", (IGamesRepository repository, int id) => 
             {
-                Game? game = repository.Get(id);
+                Game? game = repository.GetAsync(id);
                 return game is not null ? Results.Ok(game.AsDto()) : Results.NotFound();
             })
             .WithName(GetGameEndpointName); // Provide the endpoint.
@@ -47,7 +47,7 @@ namespace GameStore.Api.Endpoints
                     ImageUri = gameDto.ImageUri
                 };
 
-                repository.Create(game);
+                repository.CreateAsync(game);
                 return Results.CreatedAtRoute(GetGameEndpointName, new {id = game.Id}, game);
             });
 
@@ -55,7 +55,7 @@ namespace GameStore.Api.Endpoints
             // PUT
             group.MapPut("/{id}", (IGamesRepository repository, int id, UpdateGameDto updateGameDto) => 
             {
-                Game? existingGame = repository.Get(id);
+                Game? existingGame = repository.GetAsync(id);
 
                 if (existingGame is null)
                 {
@@ -68,7 +68,7 @@ namespace GameStore.Api.Endpoints
                 existingGame.ReleaseDate = updateGameDto.ReleaseDate;
                 existingGame.ImageUri = updateGameDto.ImageUri;
 
-                repository.Update(existingGame);
+                repository.UpdateAsync(existingGame);
 
                 return Results.NoContent();
             });
@@ -77,11 +77,11 @@ namespace GameStore.Api.Endpoints
             // DELETE
             group.MapDelete("/{id}", (IGamesRepository repository, int id) => 
             {
-                Game? game = repository.Get(id);
+                Game? game = repository.GetAsync(id);
 
                 if (game is not null)
                 {
-                    repository.Delete(id);
+                    repository.DeleteAsync(id);
                 }
 
                 return Results.NoContent();

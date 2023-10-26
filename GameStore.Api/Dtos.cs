@@ -35,8 +35,8 @@ public record UpdateGameDto(
     string Genre,
     [Range(1, 100)]
     decimal Price,
+    DateTime ReleaseDate,
     [Url]
     [StringLength(100)]
-    DateTime ReleaseDate,
     string ImageUri
 );

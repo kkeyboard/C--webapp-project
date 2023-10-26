@@ -6,14 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddSingleton<IGamesRepository, InMemGamesRepository>();
-
-var connString = builder.Configuration.GetConnectionString("GameStoreContext");
-builder.Services.AddNpgsql<GameStoreContext>(connString);
+builder.Services.AddRepositories(builder.Configuration);
 
 var app = builder.Build();
 
-app.Services.InitilizeDb();
+app.Services.InitilizeDbAsync();
 
 app.MapGamesEndpoints();
 
